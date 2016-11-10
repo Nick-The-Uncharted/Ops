@@ -1,25 +1,14 @@
 (function (win, doc, undefined) {
 
     win.toaster = function(message, type) {
-        alert(message);
+        if (type == 'success') {
+            toastr.success(message);
+        }else if (type == 'error') {
+            toastr.error(message);
+        }else {
+            toastr.info(message);
+        }
         return;
-        var toaster = $("#toaster");
-        toaster.append('<div class="toast-item"><div class="message">' + message + '</div>' +
-            '<i class="close fa fa-close"></i></div>');
-        var thisItem = toaster.children().last();
-        $(thisItem.children(".close").eq(0)).bind("click", function () {
-            thisItem.slideUp(function() {
-                thisItem.remove();
-            });
-        });
-        if (type == "success") thisItem.addClass("alert alert-success");
-        else if (type == "error") thisItem.addClass("alert alert-danger");
-        thisItem.fadeIn();
-        setTimeout(function() {
-            thisItem.slideUp(function() {
-                thisItem.remove();
-            });
-        }, 3000);
     };
 
     win.tmplCache = {};

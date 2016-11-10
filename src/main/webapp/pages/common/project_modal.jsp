@@ -12,17 +12,17 @@
                     <input class="form-control" id="js-input-name">
                 </div>
                 <div class="form-group">
-                    <label for="js-textarea-description">项目简介</label>
+                    <label for="js-textarea-description">项目描述</label>
                     <textarea class="form-control" id="js-textarea-description" rows="4"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display: none">
                     <p style="font-weight: bold">项目成员</p>
                     <select id="js-select-user" multiple="multiple" style="width: 100%"></select>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="js-btn-add-submit">提交</button>
+                <button type="button" class="btn btn-primary" id="js-btn-add-submit">确认</button>
             </div>
         </div>
     </div>

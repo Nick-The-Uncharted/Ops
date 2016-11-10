@@ -89,21 +89,12 @@ $(document).ready(function () {
                 if (ret.code == 0) {
 
                     var list1 = ret.data.create;
-                    var list2 = ret.data.in;
 
                     if (list1.length == 0) {
                         $('#js-create').html('无');
                     } else {
                         $('#js-create').html(window.tmpl(projectTmpl, {
                             data : list1
-                        }));
-                    }
-
-                    if (list2.length == 0) {
-                        $('#js-in').html('无');
-                    } else {
-                        $('#js-in').html(window.tmpl(projectTmpl, {
-                            data : list2
                         }));
                     }
 

@@ -40,10 +40,6 @@
                         <p class="title">创建时间：</p>
                         <p class="content" data-item="createTime">-</p>
                     </div>
-                    <div class="pull-right" id="js-btn-creator" hidden>
-                        <button class="btn btn-primary btn-sm" id="js-btn-edit">编辑</button>
-                        <button class="btn btn-danger btn-sm" id="js-btn-delete">删除</button>
-                    </div>
                 </div>
             </div>
         </div>
