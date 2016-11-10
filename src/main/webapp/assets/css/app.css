@@ -1,0 +1,30 @@
+body, input, label, select, option, textarea, button, fieldset, legend {
+    font-family:  "Avenir Next", Avenir, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+}
+
+.toaster {
+    position: fixed;
+    top: 65px;
+    right: 100px;
+    z-index: 9999;
+    width: 265px;
+}
+
+.toast-item {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 15px;
+    display: none;
+    position: relative;
+}
+
+.toast-item .message {
+    width: 230px;
+}
+
+.toast-item .close {
+    position: absolute;
+    right: 15px;
+    bottom: 16px;
+    cursor: pointer;
+}
