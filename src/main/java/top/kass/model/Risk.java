@@ -9,6 +9,7 @@ public class Risk {
 
     private int id;
     private int pid;
+    private int type;
     private String content;
     private byte possibility;
     private byte impact;
@@ -106,5 +107,15 @@ public class Risk {
 
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Basic
+    @Column(name = "[type]")
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

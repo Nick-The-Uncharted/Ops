@@ -61,7 +61,8 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>风险内容</th>
+                            <th>风险类型</th>
+                            <th>风险描述</th>
                             <th>可能性</th>
                             <th>影响程度</th>
                             <th>提交者</th>

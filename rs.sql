@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `project_user` (
 CREATE TABLE IF NOT EXISTS `risk` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(10) unsigned NOT NULL,
+  `type` int(10) unsigned NOT NULL,
   `content` text NOT NULL,
   `possibility` tinyint(1) unsigned NOT NULL,
   `impact` tinyint(1) unsigned NOT NULL,

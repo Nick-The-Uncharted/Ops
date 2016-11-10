@@ -7,6 +7,15 @@ $(document).ready(function () {
         options: {
             flag: 0
         },
+        myTypeMap: {
+            1: {text: '范围风险',},
+            2: {text: '进度风险'},
+            3: {text: '成本风险'},
+            4: {text: '质量风险'},
+            5: {text: '技术风险'},
+            6: {text: '管理风险'},
+            7: {text: '社会环境风险'},
+        },
         typeMap: {
             1: {
                 text: '低',
@@ -244,6 +253,12 @@ $(document).ready(function () {
             language: dataTableChinese,
             columns: [
                 { data: 'id' },
+                {
+                    data: 'type',
+                    render: function (data) {
+                        return cache.myTypeMap[String(data)].text;
+                    }
+                },
                 { data: 'content' },
                 {
                     data: 'possibility',
@@ -279,6 +294,7 @@ $(document).ready(function () {
             success: function(ret) {
                 if (ret.code == 0) {
                     if (ret.data) {
+                        console.log(ret)
                         dataTable.clear().rows.add(ret.data).draw();
                     }
                 } else {

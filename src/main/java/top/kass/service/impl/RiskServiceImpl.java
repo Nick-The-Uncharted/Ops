@@ -40,6 +40,7 @@ public class RiskServiceImpl implements RiskService {
 
         String content = (String)reqMap.get("content");
         int possibility = Integer.parseInt((String)reqMap.get("possibility"));
+        int type = Integer.parseInt((String)reqMap.get("type"));
         int impact = Integer.parseInt((String)reqMap.get("impact"));
         String trigger = (String)reqMap.get("trigger");
         List<String> uids = (List<String>)reqMap.get("followers");
@@ -57,6 +58,7 @@ public class RiskServiceImpl implements RiskService {
         risk.setImpact((byte)impact);
         risk.setTrigger(trigger);
         risk.setCommitter(uid);
+        risk.setType(type);
         risk.setCreateTime(new Timestamp(System.currentTimeMillis()));
         risk.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         risk = riskDao.create(risk);
@@ -87,6 +89,7 @@ public class RiskServiceImpl implements RiskService {
 
         String content = (String)reqMap.get("content");
         int possibility = Integer.parseInt((String)reqMap.get("possibility"));
+        int type = Integer.parseInt((String)reqMap.get("type"));
         int impact = Integer.parseInt((String)reqMap.get("impact"));
         String trigger = (String)reqMap.get("trigger");
         List<String> uids = (List<String>)reqMap.get("followers");
@@ -102,6 +105,7 @@ public class RiskServiceImpl implements RiskService {
         risk.setPossibility((byte)possibility);
         risk.setImpact((byte)impact);
         risk.setTrigger(trigger);
+        risk.setType(type);
         risk.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         risk = riskDao.create(risk);
         riskDao.updateFollowers(risk.getId(), uids);
@@ -177,6 +181,7 @@ public class RiskServiceImpl implements RiskService {
         Map<String, Object> data = new HashMap<>();
         data.put("id", risk.getId());
         data.put("pid", risk.getPid());
+        data.put("type", risk.getType());
         data.put("content", risk.getContent());
         data.put("possibility", risk.getPossibility());
         data.put("impact", risk.getImpact());

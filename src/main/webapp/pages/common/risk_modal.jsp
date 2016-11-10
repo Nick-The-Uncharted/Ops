@@ -8,7 +8,19 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>风险内容</label>
+                    <label>风险类型</label>
+                    <select name="form-control" name="type">
+                        <option value="1">范围风险</option>
+                        <option value="2">进度风险</option>
+                        <option value="3">成本风险</option>
+                        <option value="4">质量风险</option>
+                        <option value="5">技术风险</option>
+                        <option value="6">管理风险</option>
+                        <option value="7">社会环境风险</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>风险描述</label>
                     <textarea class="form-control" rows="3" name="content"></textarea>
                 </div>
                 <div class="form-group">
