@@ -96,3 +96,19 @@ body, input, label, select, option, textarea, button, fieldset, legend {
     color: white;
     background-color: #926dea;
 }
+
+.form-group {
+    display: flex;
+}
+
+.form-group label, .form-group p {
+    flex: 1 0 auto;
+    margin-right: 10px;
+    width: 60px;
+}
+
+.modal-open .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

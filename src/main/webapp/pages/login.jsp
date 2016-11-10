@@ -80,6 +80,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             success: function(ret) {
                 if (ret.code == 0) {
+                    toaster("登录成功", "success");
                     setTimeout(function () {
                         window.location.href = $('#prefixUrl').val() + '/';
                     }, 500);

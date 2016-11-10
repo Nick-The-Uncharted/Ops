@@ -13,18 +13,14 @@
 <%@include file="common/header.jsp"%>
 
 <div class="container project-container">
-    <div class="panel panel-default">
-        <div class="panel-heading">我的项目</div>
-        <div class="panel-body project-panel-body">
-            <button class="btn btn-primary" id="js-btn-add">创建项目</button>
+    <div class="heading">
+        我的项目
+        <span class="project-add" id="js-btn-add" title="创建项目">+</span>
+    </div>
+    <div class="project-panel-body">
+        <div class="content" id="js-create">无</div>
+        <div class="content" id="js-in" style="display: none">无</div>
 
-            <h4 class="title">我创建的</h4>
-            <div class="content" id="js-create">无</div>
-
-            <h4 class="title">我参与的</h4>
-            <div class="content" id="js-in">无</div>
-
-        </div>
     </div>
 
 </div>
@@ -40,6 +36,24 @@
 <script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
 
 <style>
+    .project-add {
+        color: #926dea;
+        transition: 0.3s;
+        cursor: pointer;
+        margin-left: 10px;
+        font-size: 20px;
+    }
+    .project-panel-body {
+        padding: 20px 0;
+    }
+    .project-add:hover {
+        color: #6e44cc;
+    }
+    .heading {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
     .project-container {
         margin-top: 60px;
     }
@@ -55,12 +69,15 @@
         text-align: center;
         line-height: 120px;
         font-size: 18px;
-        background-color: #eee;
+        background: url('${pageContext.request.contextPath}/assets/img/project.jpg');
+        opacity: 1;
+        color: #926dea;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
     }
     .project-panel-body .content .thumbnail:hover {
         background-color: #fff;
-        -webkit-transition: 0.5s;
-        transition: 0.5s;
+        opacity: 0.8;
     }
 </style>
 
