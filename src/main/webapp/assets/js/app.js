@@ -1,6 +1,8 @@
 (function (win, doc, undefined) {
 
     win.toaster = function(message, type) {
+        alert(message);
+        return;
         var toaster = $("#toaster");
         toaster.append('<div class="toast-item"><div class="message">' + message + '</div>' +
             '<i class="close fa fa-close"></i></div>');
@@ -147,7 +149,6 @@ $(document).ready(function () {
             url: $('#prefixUrl').val() + '/api/auth/logout',
             success: function(ret) {
                 if (ret.code == 0) {
-                    toaster('登出成功' , 'success');
                     setTimeout(function () {
                         window.location.href = $('#prefixUrl').val() + '/login';
                     }, 1000);

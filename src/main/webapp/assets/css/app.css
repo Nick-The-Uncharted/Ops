@@ -28,3 +28,71 @@ body, input, label, select, option, textarea, button, fieldset, legend {
     bottom: 16px;
     cursor: pointer;
 }
+
+.btn {
+    transition: 0.3s;
+}
+
+.btn:focus, .btn:active {
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #926dea;
+    border-color: #926dea;
+}
+
+.btn-primary:hover, .btn-primary:active,.btn-primary.active, .btn-primary.focus {
+    background-color: #6e44cc;
+    border-color: #6e44cc;
+}
+
+.btn-primary:focus, .btn-primary:active, .btn-primary.focus, .btn-primary.active {
+    outline: none;
+    background-color: #6e44cc;
+    border-color: #6e44cc;
+}
+
+.navbar-default {
+    background-color: #926dea;
+    border-color: #b399dc;
+    color: white;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #b399dc;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    color: #eeeeee;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+    transition: 0.3s;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #eeeeee;
+}
+
+.form-control {
+    border: 1px solid #eeeeee;
+}
+
+.form-control:hover, .form-control:active {
+    border-color: #926dea;
+}
+
+.form-control:focus, .form-control:active {
+    box-shadow: 0 0 0 2px rgba(179, 152, 220, 0.2);
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: white;
+    background-color: #926dea;
+}
