@@ -7,14 +7,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="<%=request.getContextPath()%>/">项目</a></li>
-                <li><a href="<%=request.getContextPath()%>/tips">权限说明</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
                     <c:when test="${sessionScope.get('id') != null}">
-                        <li><a href="<%=request.getContextPath()%>/info">${sessionScope.get('name')}（${sessionScope.get('username')}）</a></li>
-                        <li><a href="javascript:;" id="js-btn-logout">登出</a></li>
+                        <li style="padding: 6px 0 6px 0"><img src="${pageContext.request.contextPath}/assets/img/user.jpeg" alt=""
+                        style="border-radius: 50%;width: 40px;height: 40px"></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/info">${sessionScope.get('name')} <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="javascript:;" id="js-btn-logout">登出</a></li>
+                            </ul>
+                        </li>
                     </c:when>
                     <c:otherwise>
                         <li><a href="<%=request.getContextPath()%>/login">登录</a></li>

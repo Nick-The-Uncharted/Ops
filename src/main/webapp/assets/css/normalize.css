@@ -459,3 +459,8 @@ template {
 [hidden] {
     display: none;
 }
+
+::selection {
+    background-color: #926dea;
+    color: #ffffff;
+}
