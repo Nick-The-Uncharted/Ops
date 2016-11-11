@@ -116,7 +116,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
-        url: $('#prefixUrl').val() + '/api/project/getUsersByPid?id=' + $('#js-pid').val(),
+        url: $('#prefixUrl').val() + '/api/user/getAllUsers',
         success: function(ret) {
             if (ret.code == 0) {
                 if (ret.data) {
@@ -283,7 +283,7 @@ $(document).ready(function () {
                         if(data) {
                             var followers = [];
                             for(var i = 0; i < data.length; i++) {
-                                followers.push(data[i].text);
+                                followers.push(data[i].username);
                             }
                             return followers.join(",");
                         }
@@ -327,18 +327,12 @@ $(document).ready(function () {
                             $.ajax({
                                 type: 'GET',
                                 async: false,
-                                url: $('#prefixUrl').val() + '/api/riskState/getRiskStatesByRid?id=' + risks[i].id,
+                                url: $('#prefixUrl').val() + '/api/risk/getById?id=' + risks[i].id,
                                 success: function(result) {
                                     if (result.code == 0) {
                                         if (result.data) {
-                                            var followers = [];
-                                            for (var j = 0, one; one = result.data.list[j]; j++) {
-                                                followers.push({
-                                                    id: one.creator,
-                                                    text: one.username
-                                                });
-                                            }
-                                            risks[i].followers = followers;
+                                            console.log(result.data)
+                                            risks[i].followers = result.data.followers;
                                         }
                                     } else {
                                         toaster(result.msg || '系统繁忙', 'error');
