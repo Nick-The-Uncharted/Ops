@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>风险类型</label>
-                    <select name="form-control" name="type">
+                    <select class="form-control" name="type">
                         <option value="1">范围风险</option>
                         <option value="2">进度风险</option>
                         <option value="3">成本风险</option>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label>触发器/阈值</label>
-                    <textarea class="form-control" rows="3" name="trigger"></textarea>
+                    <input class="form-control" name="trigger" />
                 </div>
                 <div class="form-group">
                     <p style="font-weight: bold">跟踪者</p>
@@ -50,7 +50,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="js-btn-add-risk-submit">提交</button>
+                <button type="button" class="btn btn-primary" id="js-btn-add-risk-submit">创建</button>
             </div>
         </div>
     </div>

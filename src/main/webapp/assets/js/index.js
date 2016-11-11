@@ -13,7 +13,7 @@ $(document).ready(function () {
                     for (var i = 0, one; one = ret.data[i]; i++) {
                         cache.userList.push({
                             id: one.id,
-                            text: one.name + '（' + one.username + '）'
+                            text: one.username
                         });
                     }
                     $('#js-select-user').select2({

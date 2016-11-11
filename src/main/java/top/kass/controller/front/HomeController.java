@@ -14,11 +14,6 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value="/tips", method= RequestMethod.GET)
-    public String tips() {
-        return "tips";
-    }
-
     @RequestMapping(value="/login", method= RequestMethod.GET)
     public String login() {
         return "login";
@@ -27,11 +22,6 @@ public class HomeController {
     @RequestMapping(value="/register", method= RequestMethod.GET)
     public String register() {
         return "register";
-    }
-
-    @RequestMapping(value="/info", method= RequestMethod.GET)
-    public String info() {
-        return "info";
     }
 
     @RequestMapping(value="/project/{id}", method= RequestMethod.GET)

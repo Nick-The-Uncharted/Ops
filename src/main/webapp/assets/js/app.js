@@ -100,7 +100,7 @@
             return num < 10 ? '0' + num : num;
         }
         var _d = new Date(d*1000);
-        return _d.getFullYear() + '-' + addZero(_d.getMonth() + 1) + '-' + addZero(_d.getDate()) + ' ' + addZero(_d.getHours()) + ':' + addZero(_d.getMinutes()) + ':' + addZero(_d.getSeconds());
+        return _d.getFullYear() + '-' + addZero(_d.getMonth() + 1) + '-' + addZero(_d.getDate());
     };
 
     win.dataTableChinese = {

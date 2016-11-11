@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>软件项目风险管理系统</title>
+    <title>风险管理系统</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/select2/css/select2.min.css">
@@ -16,47 +16,28 @@
 <input id="js-pid" hidden value="${id}">
 <div class="container project-container" >
     <div class="row">
-        <div class="col-md-3">
-            <div class="panel panel-default intro-panel" id="js-panel-intro">
-                <div class="panel-heading">项目概述</div>
-                <div class="panel-body project-panel-body">
-                    <div class="item">
-                        <p class="title">项目名称：</p>
-                        <p class="content" data-item="name">-</p>
+        <div class="col-md-12">
+            <div class="" id="js-panel-intro">
+                <div class="item" style="font-size: 16px;font-weight: bold;display: flex;justify-content: space-between">
+                    <div>
+                        <span>项目：</span>
+                        <span class="content" data-item="name">-</span>
                     </div>
-                    <div class="item">
-                        <p class="title">项目简介：</p>
-                        <p class="content" data-item="description">-</p>
-                    </div>
-                    <div class="item">
-                        <p class="title">创建者：</p>
-                        <p class="content" data-item="creator">-</p>
-                    </div>
-                    <div class="item">
-                        <p class="title">参与者：</p>
-                        <p class="content" data-item="users">-</p>
-                    </div>
-                    <div class="item">
-                        <p class="title">创建时间：</p>
-                        <p class="content" data-item="createTime">-</p>
-                    </div>
+                    <div class="content" data-item="createTime" style="font-size: 12px;font-weight: lighter">-</div>
+                </div>
+                <div class="item" style="color: #9b9b9b;display: flex;margin: 10px 0">
+                    <div>描述：</div>
+                    <div class="content" data-item="description">-</div>
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">风险一览</div>
-                <div class="panel-body project-panel-body">
-                    <button class="btn btn-primary btn-sm" id="js-btn-add">创建条目</button>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <select class="form-control" id="js-select-risk-flag" style="margin-top: 15px; margin-bottom: 15px;">
-                                <option value="0">所有</option>
-                                <option value="1">我提交的</option>
-                                <option value="2">我跟踪的</option>
-                            </select>
-                        </div>
-                    </div>
+        <div class="col-md-12">
+            <div class="">
+                <div class="" style="font-size: 16px;">
+                    风险一览
+                    <span class="risk-add" id="js-btn-add" title="添加风险条目">+</span>
+                </div>
+                <div class="">
                     <table class="table table-hover table-bordered " id="js-table">
                         <thead>
                         <tr>
@@ -65,7 +46,7 @@
                             <th>风险描述</th>
                             <th>可能性</th>
                             <th>影响程度</th>
-                            <th>提交者</th>
+                            <th>跟踪者</th>
                             <th>创建时间</th>
                         </tr>
                         </thead>
@@ -114,6 +95,16 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+    .risk-add {
+        color: #926dea;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .risk-add:hover {
+        color: #6e44cc;
     }
 </style>
 

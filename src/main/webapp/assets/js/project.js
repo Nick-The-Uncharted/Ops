@@ -53,17 +53,17 @@ $(document).ready(function () {
                     if (ret.data) {
                         cache.project = ret.data;
                         $('title').text('项目[' + ret.data.name + '] - 软件项目风险管理系统');
-                        $('#js-panel-intro p[data-item]').each(function () {
+                        $('#js-panel-intro *[data-item]').each(function () {
                             var item = $(this).attr('data-item');
                             var text = ret.data[item];
                             if (item == 'creator') {
                                 var creator = ret.data.creator;
-                                $(this).text(creator.name + '（' + creator.username + '）');
+                                $(this).text(creator.username);
                             } else if (item == 'users') {
                                 var users = ret.data.users;
                                 var userText = '';
                                 for (var i = 0, one; one = users[i]; i++) {
-                                    userText += one.name + '（' + one.username + '）；'
+                                    userText += one.username + " ";
                                 }
                                 $(this).text(userText);
                             } else if (item == 'createTime') {
@@ -95,7 +95,7 @@ $(document).ready(function () {
                     for (var i = 0, one; one = ret.data[i]; i++) {
                         cache.userList.push({
                             id: one.id,
-                            text: one.name + '（' + one.username + '）'
+                            text: one.username
                         });
                     }
                     $('#js-select-user').select2({
@@ -121,7 +121,7 @@ $(document).ready(function () {
                     for (var i = 0, one; one = ret.data[i]; i++) {
                         cache.projectUserList.push({
                             id: one.id,
-                            text: one.name + '（' + one.username + '）'
+                            text: one.username
                         });
                     }
                     $('#js-select-follower').select2({
@@ -251,6 +251,9 @@ $(document).ready(function () {
     function initDataTable() {
         dataTable = $('#js-table').DataTable({
             language: dataTableChinese,
+            paging: false,
+            searching: true,
+            info: false,
             columns: [
                 { data: 'id' },
                 {
@@ -263,18 +266,28 @@ $(document).ready(function () {
                 {
                     data: 'possibility',
                     render: function(data) {
-                        return '<span class="label label-' + cache.typeMap[String(data)].type + '">' +
-                            cache.typeMap[String(data)].text + '</span>';
+                        return cache.typeMap[String(data)].text;
                     }
                 },
                 {
                     data: 'impact',
                     render: function(data) {
-                        return '<span class="label label-' + cache.typeMap[String(data)].type + '">' +
-                            cache.typeMap[String(data)].text + '</span>';
+                        return cache.typeMap[String(data)].text;
                     }
                 },
-                { data: 'name' },
+                {
+                    data: 'followers',
+                    render: function (data) {
+                        if(data) {
+                            var followers = [];
+                            for(var i = 0; i < data.length; i++) {
+                                followers.push(data[i].text);
+                            }
+                            return followers.join(",");
+                        }
+                        return "无";
+                    }
+                },
                 {
                     data: 'createTime',
                     render: function(data) {
@@ -294,7 +307,33 @@ $(document).ready(function () {
             success: function(ret) {
                 if (ret.code == 0) {
                     if (ret.data) {
-                        console.log(ret)
+                        var risks = ret.data;
+                        for(var i = 0; i < risks.length; i++){
+                            $.ajax({
+                                type: 'GET',
+                                async: false,
+                                url: $('#prefixUrl').val() + '/api/riskState/getRiskStatesByRid?id=' + risks[i].id,
+                                success: function(result) {
+                                    if (result.code == 0) {
+                                        if (result.data) {
+                                            var followers = [];
+                                            for (var j = 0, one; one = result.data.list[j]; j++) {
+                                                followers.push({
+                                                    id: one.creator,
+                                                    text: one.username
+                                                });
+                                            }
+                                            risks[i].followers = followers;
+                                        }
+                                    } else {
+                                        toaster(result.msg || '系统繁忙', 'error');
+                                    }
+                                },
+                                error: function() {
+                                    toaster('系统繁忙', "error");
+                                }
+                            });
+                        }
                         dataTable.clear().rows.add(ret.data).draw();
                     }
                 } else {
@@ -310,12 +349,6 @@ $(document).ready(function () {
     $('#js-select-risk-flag').on('change', function () {
         cache.options.flag = $('#js-select-risk-flag').val();
         loadData();
-    });
-
-    $('#js-table-body').delegate('tr', 'click', function () {
-        if ($(this).find('td').eq(0).hasClass('dataTables_empty')) return false;
-        window.location.href = $('#prefixUrl').val() + '/project/' + $('#js-pid').val() +
-            '/risk/' + $(this).find('td').eq(0).text();
     });
 
 });
