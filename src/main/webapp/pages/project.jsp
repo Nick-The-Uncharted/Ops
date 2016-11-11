@@ -33,8 +33,8 @@
         </div>
         <div class="col-md-12">
             <div class="">
-                <div class="" style="font-size: 16px;">
-                    风险一览
+                <div class="" style="font-size: 16px;position: relative;top:26px">
+                    风险列表
                     <span class="risk-add" id="js-btn-add" title="添加风险条目">+</span>
                 </div>
                 <div class="">
@@ -48,6 +48,7 @@
                             <th>影响程度</th>
                             <th>跟踪者</th>
                             <th>创建时间</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody id="js-table-body"></tbody>
@@ -90,7 +91,7 @@
     
     table tbody td {
         max-width: 200px;
-        cursor: pointer;
+        cursor: default;
         word-break: keep-all;
         overflow: hidden;
         text-overflow: ellipsis;

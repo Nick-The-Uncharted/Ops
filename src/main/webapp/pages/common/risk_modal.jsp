@@ -50,7 +50,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="js-btn-add-risk-submit">创建</button>
+                <button type="button" class="btn btn-primary" id="js-btn-add-risk-submit">确定</button>
             </div>
         </div>
     </div>

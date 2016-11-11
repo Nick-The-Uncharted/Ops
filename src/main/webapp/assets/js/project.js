@@ -1,3 +1,5 @@
+var myRisks = [];
+
 $(document).ready(function () {
 
     var cache = {
@@ -293,6 +295,18 @@ $(document).ready(function () {
                     render: function(data) {
                         return formatDateTime(data/1000);
                     }
+                },
+                {
+                  data: "object",
+                    render: function (data) {
+                        // var myEdit = document.createElement("span");
+                        // myEdit.className = "my-edit";
+                        // myEdit.innerHTML = "编辑";
+                        // myEdit.onclick = function (e) {
+                        //     editRiskItem(data);
+                        // }
+                        return '<span class="my-edit" onclick="editRiskItem(' + data.id + ')">编辑</span> <span class="my-edit" onclick="deleteRiskItem(' + data.id + ')">删除</span>';
+                    }
                 }
             ],
             order: [[0, 'desc']]
@@ -309,6 +323,7 @@ $(document).ready(function () {
                     if (ret.data) {
                         var risks = ret.data;
                         for(var i = 0; i < risks.length; i++){
+                            risks[i].object = risks[i];
                             $.ajax({
                                 type: 'GET',
                                 async: false,
@@ -335,6 +350,7 @@ $(document).ready(function () {
                             });
                         }
                         dataTable.clear().rows.add(ret.data).draw();
+                        myRisks = ret.data;
                     }
                 } else {
                     toaster(ret.msg || '系统繁忙', 'error');
@@ -352,3 +368,83 @@ $(document).ready(function () {
     });
 
 });
+
+function editRiskItem(id) {
+    var risk;
+    for(var j = 0; j < myRisks.length; j++) {
+        if(myRisks[j].id == id) {
+            risk = myRisks[j];
+        }
+    }
+    console.log(risk);
+    $('#js-modal-risk [name="content"]').val(risk.content);
+    $('#js-modal-risk [name="possibility"]').val(risk.possibility);
+    $('#js-modal-risk [name="impact"]').val(risk.impact);
+    $('#js-modal-risk [name="trigger"]').val(risk.trigger);
+    var users = [];
+    if (risk.followers) {
+        for (var i = 0, one; one = risk.followers[i]; i++) {
+            users.push(one.id);
+        }
+    }
+    $('#js-select-follower').val(users).trigger("change");
+    $('#js-modal-risk').modal('show');
+    $('#js-btn-add-risk-submit').off('click');
+    $('#js-btn-add-risk-submit').on('click', function () {
+        var data = {
+            id: id+"",
+            pid: $('#js-pid').val()
+        };
+        $('#js-modal-risk [name]').each(function () {
+            data[$(this).attr('name')] = $(this).val();
+        });
+        data.followers = $('#js-select-follower').val() || [];
+        $.ajax({
+            type: 'POST',
+            url: $('#prefixUrl').val() + '/api/risk/modify',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function(ret) {
+                if (ret.code == 0) {
+                    toaster('修改成功', 'success');
+                    $('#js-modal-risk').modal('hide');
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 500);
+                } else {
+                    toaster(ret.msg || '系统繁忙', 'error');
+                }
+            },
+            error: function() {
+                toaster('系统繁忙', "error");
+            }
+        });
+    });
+}
+
+function deleteRiskItem(id) {
+    showConfirm('真的要删除这个风险条目吗？（删除后不可恢复）', '删除风险条目', function() {
+        ajaxDelete();
+    });
+    var ajaxDelete = function() {
+        $.ajax({
+            type: 'GET',
+            url: $('#prefixUrl').val() + '/api/risk/delete?id=' + id,
+            success: function(ret) {
+                if (ret.code == 0) {
+                    toaster('删除成功', 'success');
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 500);
+                } else {
+                    toaster(ret.msg || '系统繁忙', 'error');
+                }
+            },
+            error: function() {
+                toaster('系统繁忙', "error");
+            }
+        });
+    }
+}
+
+

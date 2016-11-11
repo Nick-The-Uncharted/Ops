@@ -112,3 +112,12 @@ body, input, label, select, option, textarea, button, fieldset, legend {
     align-items: center;
     justify-content: center;
 }
+
+.my-edit {
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.my-edit:hover {
+    color: #926dea;
+}
