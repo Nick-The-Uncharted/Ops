@@ -15,7 +15,7 @@
                     <label for="js-textarea-description">项目描述</label>
                     <textarea class="form-control" id="js-textarea-description" rows="4"></textarea>
                 </div>
-                <div class="form-group" style="display: none">
+                <div class="form-group">
                     <p style="font-weight: bold">项目成员</p>
                     <select id="js-select-user" multiple="multiple" style="width: 100%"></select>
                 </div>

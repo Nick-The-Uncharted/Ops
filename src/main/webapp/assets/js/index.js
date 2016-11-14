@@ -88,7 +88,7 @@ $(document).ready(function () {
             success: function(ret) {
                 if (ret.code == 0) {
 
-                    var list1 = ret.data.create;
+                    var list1 = ret.data.create.concat(ret.data.in);
 
                     if (list1.length == 0) {
                         $('#js-create').html('无');
