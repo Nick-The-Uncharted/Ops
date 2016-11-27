@@ -1,6 +1,6 @@
 node {
     stage('Env') {
-        sh "grep '^export PATH' ~/.bash_profile | sh"
+        sh "grep '^export PATH' ~/.bash_profile | eval"
         sh "echo $PATH"
     }
     
