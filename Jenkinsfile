@@ -1,4 +1,8 @@
 node {
+    stage('Env') {
+        source '~/.bash_profile'
+    }
+    
     stage('SCM') {
         git 'https://github.com/zzt93/Ops.git'
     }
