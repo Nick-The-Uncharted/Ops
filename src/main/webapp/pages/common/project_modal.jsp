@@ -4,19 +4,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">创建项目</h4>
+                <h4 class="modal-title">创建RA</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="js-input-name">项目名称</label>
+                    <label for="js-input-name">RA名称</label>
                     <input class="form-control" id="js-input-name">
                 </div>
                 <div class="form-group">
-                    <label for="js-textarea-description">项目描述</label>
+                    <label for="js-textarea-description">RA描述</label>
                     <textarea class="form-control" id="js-textarea-description" rows="4"></textarea>
                 </div>
                 <div class="form-group">
-                    <p style="font-weight: bold">项目成员</p>
+                    <p style="font-weight: bold">RA成员</p>
                     <select id="js-select-user" multiple="multiple" style="width: 100%"></select>
                 </div>
             </div>

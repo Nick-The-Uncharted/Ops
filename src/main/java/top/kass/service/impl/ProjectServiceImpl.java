@@ -38,7 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         if (name.length() == 0) {
             map.put("code", 100);
-            map.put("msg", "项目名称不能为空");
+            map.put("msg", "RA名称不能为空");
             return map;
         }
 
@@ -113,7 +113,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         if (name.length() == 0) {
             map.put("code", 100);
-            map.put("msg", "项目名称不能为空");
+            map.put("msg", "RA名称不能为空");
             return map;
         }
 

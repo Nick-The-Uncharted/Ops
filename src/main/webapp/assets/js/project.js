@@ -19,7 +19,11 @@ $(document).ready(function () {
             7: {text: '社会环境风险'},
         },
         typeMap: {
+            0: {
+               is: '否'
+            },
             1: {
+                is: '是',
                 text: '低',
                 type: 'default'
             },
@@ -54,7 +58,7 @@ $(document).ready(function () {
                 if (ret.code == 0) {
                     if (ret.data) {
                         cache.project = ret.data;
-                        $('title').text('项目[' + ret.data.name + '] - 软件项目风险管理系统');
+                        $('title').text('RA[' + ret.data.name + '] - 软件项目风险管理系统');
                         $('#js-panel-intro *[data-item]').each(function () {
                             var item = $(this).attr('data-item');
                             var text = ret.data[item];
@@ -141,7 +145,7 @@ $(document).ready(function () {
     });
 
     $('#js-btn-delete').on('click', function () {
-        showConfirm('真的要删除这个项目吗？（删除后不可恢复）', '删除项目', function() {
+        showConfirm('真的要删除这个RA吗？（删除后不可恢复）', '删除RA', function() {
             ajaxDelete();
         });
         var ajaxDelete = function() {
@@ -297,6 +301,12 @@ $(document).ready(function () {
                     }
                 },
                 {
+                    data: 'isProblem',
+                    render: function(data) {
+                        return cache.typeMap[String(data)].is;
+                    }
+                },
+                {
                   data: "object",
                     render: function (data) {
                         // var myEdit = document.createElement("span");
@@ -343,6 +353,7 @@ $(document).ready(function () {
                                 }
                             });
                         }
+                        console.log(ret.data)
                         dataTable.clear().rows.add(ret.data).draw();
                         myRisks = ret.data;
                     }

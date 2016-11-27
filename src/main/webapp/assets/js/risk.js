@@ -39,7 +39,7 @@ $(document).ready(function () {
         success: function(ret) {
             if (ret.code == 0) {
                 if (ret.data) {
-                    $('title').text('项目[' + ret.data.name + '] - 软件项目风险管理系统');
+                    $('title').text('RA[' + ret.data.name + '] - 软件项目风险管理系统');
                 }
             } else {
                 toaster(ret.msg || '系统繁忙', 'error');

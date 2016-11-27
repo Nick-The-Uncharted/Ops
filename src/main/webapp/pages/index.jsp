@@ -14,8 +14,8 @@
 
 <div class="container project-container">
     <div class="heading">
-        我的项目
-        <span class="project-add" id="js-btn-add" title="创建项目">+</span>
+        我的RA
+        <span class="project-add" id="js-btn-add" title="创建RA">+</span>
     </div>
     <div class="project-panel-body">
         <div class="content" id="js-create">无</div>

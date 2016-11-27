@@ -15,6 +15,7 @@ public class Risk {
     private byte impact;
     private String trigger;
     private int committer;
+    private boolean isProblem;
     private Timestamp createTime;
     private Timestamp updateTime;
 
@@ -87,6 +88,16 @@ public class Risk {
 
     public void setCommitter(int committer) {
         this.committer = committer;
+    }
+
+    @Basic
+    @Column(name = "isProblem")
+    public boolean getIsProblem() {
+        return isProblem;
+    }
+
+    public void setIsProblem(boolean isProblem) {
+        this.isProblem = isProblem;
     }
 
     @Basic

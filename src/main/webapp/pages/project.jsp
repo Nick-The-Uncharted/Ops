@@ -20,7 +20,7 @@
             <div class="" id="js-panel-intro">
                 <div class="item" style="font-size: 16px;font-weight: bold;display: flex;justify-content: space-between">
                     <div>
-                        <span>项目：</span>
+                        <span>RA：</span>
                         <span class="content" data-item="name">-</span>
                     </div>
                     <div class="content" data-item="createTime" style="font-size: 12px;font-weight: lighter">-</div>
@@ -33,9 +33,12 @@
         </div>
         <div class="col-md-12">
             <div class="">
-                <div class="" style="font-size: 16px;position: relative;top:26px">
+                <div class="" style="font-size: 16px">
                     风险列表
                     <span class="risk-add" id="js-btn-add" title="添加风险条目">+</span>
+                </div>
+                <div style="position: relative; top: 26px; display: flex; margin-left: auto; ">
+                    <button type="button" class="btn btn-info">分析</button>
                 </div>
                 <div class="">
                     <table class="table table-hover table-bordered " id="js-table">
@@ -48,6 +51,7 @@
                             <th>影响程度</th>
                             <th>跟踪者</th>
                             <th>创建时间</th>
+                            <th>成为问题</th>
                             <th>操作</th>
                         </tr>
                         </thead>

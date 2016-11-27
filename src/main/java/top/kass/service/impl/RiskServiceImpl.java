@@ -42,6 +42,7 @@ public class RiskServiceImpl implements RiskService {
         int possibility = Integer.parseInt((String)reqMap.get("possibility"));
         int type = Integer.parseInt((String)reqMap.get("type"));
         int impact = Integer.parseInt((String)reqMap.get("impact"));
+        boolean isProblem= ((String)reqMap.get("isProblem")).equals("1");
         String trigger = (String)reqMap.get("trigger");
         List<String> uids = (List<String>)reqMap.get("followers");
 
@@ -61,6 +62,7 @@ public class RiskServiceImpl implements RiskService {
         risk.setType(type);
         risk.setCreateTime(new Timestamp(System.currentTimeMillis()));
         risk.setUpdateTime(new Timestamp(System.currentTimeMillis()));
+        risk.setIsProblem(isProblem);
         risk = riskDao.create(risk);
         riskDao.updateFollowers(risk.getId(), uids);
 
@@ -91,6 +93,7 @@ public class RiskServiceImpl implements RiskService {
         int possibility = Integer.parseInt((String)reqMap.get("possibility"));
         int type = Integer.parseInt((String)reqMap.get("type"));
         int impact = Integer.parseInt((String)reqMap.get("impact"));
+        boolean isProblem= ((String)reqMap.get("isProblem")).equals("1");
         String trigger = (String)reqMap.get("trigger");
         List<String> uids = (List<String>)reqMap.get("followers");
 
@@ -107,6 +110,7 @@ public class RiskServiceImpl implements RiskService {
         risk.setTrigger(trigger);
         risk.setType(type);
         risk.setUpdateTime(new Timestamp(System.currentTimeMillis()));
+        risk.setIsProblem(isProblem);
         risk = riskDao.create(risk);
         riskDao.updateFollowers(risk.getId(), uids);
 
@@ -190,6 +194,7 @@ public class RiskServiceImpl implements RiskService {
         data.put("createTime", risk.getCreateTime());
         data.put("updateTime", risk.getUpdateTime());
         data.put("followers", followers);
+        data.put("isProblem", risk.getIsProblem());
 
         if (authDao.isRiskCommitter(id, uid)) {
             data.put("isCommitter", 1);

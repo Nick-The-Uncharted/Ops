@@ -47,6 +47,14 @@
                     <p style="font-weight: bold">跟踪者</p>
                     <select id="js-select-follower" multiple="multiple" style="width: 100%"></select>
                 </div>
+                <div class="has-warning">
+                    <div class="checkbox">
+                        <label style="position: absolute; right: 20px">
+                            <input type="checkbox" id="isProblem" value="1" name="isProblem">
+                            成为问题
+                        </label>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
