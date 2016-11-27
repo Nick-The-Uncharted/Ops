@@ -3,8 +3,7 @@ node {
         git 'https://github.com/zzt93/Ops.git'
     }
     stage('QA') {
-        sh "source ~/.env || true"
-        sh 'sonar-scanner'
+        sh "source ~/.env || true | sonar-scanner"
     }
     stage('build') {
         def mvnHome = tool 'M3'
