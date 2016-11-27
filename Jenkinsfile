@@ -1,6 +1,6 @@
 node {
     stage('Env') {
-        source '~/.bash_profile'
+        sh 'source ~/.bash_profile'
     }
     
     stage('SCM') {
