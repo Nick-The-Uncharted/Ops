@@ -1,6 +1,7 @@
 node {
     stage('Env') {
         sh "grep '^export PATH' ~/.bash_profile | sh"
+        sh "echo $PATH"
     }
     
     stage('SCM') {
