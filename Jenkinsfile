@@ -1,13 +1,9 @@
-node {
-    stage('Env') {
-        sh "source ~/.env || true"
-        sh "echo $PATH"
-    }
-    
+node {    
     stage('SCM') {
         git 'https://github.com/zzt93/Ops.git'
     }
     stage('QA') {
+        sh "source ~/.env || true"
         sh 'sonar-scanner'
     }
     stage('build') {
