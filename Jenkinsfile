@@ -15,7 +15,7 @@ node {
         sh "docker run --name my -e MYSQL_ALLOW_EMPTY_PASSWORD=true -d mysql/mysql-server"
         sh "docker cp rs.sql my:/tmp"
         waitUntil {
-            def r = sh script: 'docker exec my sh -c 'mysql < /tmp/rs.sql', returnStatus: true
+            def r = sh script: "docker exec my sh -c 'mysql < /tmp/rs.sql'", returnStatus: true
             return (r == 0);
         }
 
