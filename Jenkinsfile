@@ -12,7 +12,7 @@ node {
     stage('deploy') {
         sh "docker stop my || true"
         sh "docker rm my || true"
-        sh "docker run --name my -e MYSQL_ALLOW_EMPTY_PASSWORD=true -d mysql/mysqlser"
+        sh "docker run --name my -e MYSQL_ALLOW_EMPTY_PASSWORD=true -d mysql/mysql-server"
         sh "docker cp rs.sql my:/tmp"
         sh "docker exec my sh -c 'mysql < /tmp/rs.sql'"
 
