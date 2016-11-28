@@ -4,7 +4,7 @@
 -- 服务器操作系统:                      Win64
 -- HeidiSQL 版本:                  9.3.0.5001
 -- --------------------------------------------------------
-
+update mysql.user set host='%' where user='root';
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
