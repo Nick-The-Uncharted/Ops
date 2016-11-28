@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 import top.kass.dao.RiskDao;
 import top.kass.model.Risk;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Repository
 public class RiskDaoImpl implements RiskDao {
@@ -130,4 +129,37 @@ public class RiskDaoImpl implements RiskDao {
         return list;
     }
 
+    @Override
+    public Map<Integer, Object> getByTimeIntervel(Date beginTime, Date endTime, int type, int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query;
+        List list;
+
+        if (type == 1) {
+            query = session.createSQLQuery("SELECT type, count(*) FROM rs.risk where pid = ? and createTime between ? and date(?) + 1 group by type ");
+            query.setInteger(0, id);
+            query.setDate(1, beginTime);
+            query.setDate(2, endTime);
+            list = query.list();
+        } else {
+            query = session.createSQLQuery("SELECT type, count(*) FROM rs.risk where pid=? and isProblem=1 and createTime between ? and date(?) + 1 group by type ");
+            query.setInteger(0, id);
+            query.setDate(1, beginTime);
+            query.setDate(2, endTime);
+            list = query.list();
+        }
+
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+
+        HashMap<Integer, Object> resultMap = new HashMap<>();
+
+        for (Object obj : list) {
+            Object[] line = (Object[])obj;
+            resultMap.put((Integer)line[0], line[1]);
+        }
+
+        return resultMap;
+    }
 }

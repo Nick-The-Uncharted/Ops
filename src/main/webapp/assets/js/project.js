@@ -1,7 +1,7 @@
 var myRisks = [];
 
+const riskTypes = ["范围风险", "进度风险", "成本风险", "质量风险", "技术风险", "管理风险", "社会环境风险"]
 $(document).ready(function () {
-
     var cache = {
         project: {},
         userList: [],
@@ -453,3 +453,101 @@ function deleteRiskItem(id) {
 }
 
 
+var analysisChart
+
+function updateChart() {
+    $.ajax($('#prefixUrl').val() + '/api/risk/getRisksByTimeIntervel', {
+        data: {
+            beginTime: $("#begin-time").val(),
+            endTime: $("#end-time").val(),
+            type: $("input[name='riskType']:checked").val(),
+            id:  $('#js-pid').val()
+        },
+        success: function(data){
+            console.log(data)
+            var dataArray = []
+            for(var i = 0 ; i < riskTypes.length ; ++i) {
+                dataArray[i] = data.data[i + 1] || 0
+            }
+            console.log(dataArray)
+            updateChartWithData(dataArray)
+        }})
+
+}
+
+function updateChartWithData(data) {
+    if (analysisChart) {
+        analysisChart.data.datasets[0].data = data
+        analysisChart.update()
+    } else {
+        var ctx = document.getElementById("analysisChart");
+        analysisChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: riskTypes,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        })
+    }
+}
+
+function prepareAnalaysisModal() {
+    var today = new Date();
+    var aWeekAgo = function() {
+        var aWeekAgo = new Date();
+        aWeekAgo.setDate(aWeekAgo.getDate() - 7)
+        return aWeekAgo
+    }()
+
+    $("#begin-time").val(aWeekAgo.toDateInputValue())
+    $("#end-time").val(today.toDateInputValue())
+    $("#js-modal-analysis").modal('show')
+
+    $("#begin-time").on('change', updateChart)
+    $("#end-time").on('change', updateChart)
+    $("input[name='riskType']").on('change', updateChart)
+    $("input[name='chartType']").on('change', function () {
+        if (analysisChart) {
+            analysisChart.type = $(this).val()
+            var config = analysisChart.config
+            config.type = 'bar'
+            analysisChart.destroy()
+            var ctx = document.getElementById("analysisChart");
+            analysisChart = new Chart(ctx, config)
+        }
+    })
+}
+
+function analysis() {
+    prepareAnalaysisModal()
+    updateChart()
+}

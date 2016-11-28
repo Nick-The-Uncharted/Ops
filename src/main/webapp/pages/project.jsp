@@ -38,7 +38,7 @@
                     <span class="risk-add" id="js-btn-add" title="添加风险条目">+</span>
                 </div>
                 <div style="position: relative; top: 26px; display: flex; margin-left: auto; ">
-                    <button type="button" class="btn btn-info">分析</button>
+                    <button type="button" class="btn btn-info" onclick="analysis()">分析</button>
                 </div>
                 <div class="">
                     <table class="table table-hover table-bordered " id="js-table">
@@ -66,6 +66,7 @@
 <%@include file="common/toaster.jsp"%>
 <%@include file="common/project_modal.jsp"%>
 <%@include file="common/risk_modal.jsp"%>
+<%@include file="common/analysis_model.jsp"%>
 
 <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
@@ -75,6 +76,7 @@
 <script src="${pageContext.request.contextPath}/assets/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/app.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/project.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/Chart.bundle.js"></script>
 
 <style>
     .project-container {

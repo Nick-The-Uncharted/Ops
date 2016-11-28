@@ -47,7 +47,7 @@
                     <p style="font-weight: bold">跟踪者</p>
                     <select id="js-select-follower" multiple="multiple" style="width: 100%"></select>
                 </div>
-                <div class="has-warning">
+                <div class="has-warning" style="padding-bottom: 8px">
                     <div class="checkbox">
                         <label style="position: absolute; right: 20px">
                             <input type="checkbox" id="isProblem" value="1" name="isProblem">

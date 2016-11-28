@@ -2,7 +2,9 @@ package top.kass.dao;
 
 import top.kass.model.Risk;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface RiskDao {
 
@@ -19,5 +21,7 @@ public interface RiskDao {
     public List getFollowers(int id);
 
     public List getByPid(int pid, int flag, int uid);
+
+    public Map<Integer, Object> getByTimeIntervel(Date beginTime, Date endTime, int type, int id);
 
 }

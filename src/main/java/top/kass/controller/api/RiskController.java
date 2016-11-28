@@ -1,12 +1,15 @@
 package top.kass.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import top.kass.service.RiskService;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/api/risk")
@@ -27,6 +30,12 @@ public class RiskController {
     @ResponseBody
     public Map<String, Object> getById(@RequestParam int id, HttpSession session) {
         return riskService.getById(id, (int)session.getAttribute("id"));
+    }
+
+    @RequestMapping(value = "/getRisksByTimeIntervel", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getRisksByTimeIntervel(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date beginTime, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime, @RequestParam int type, @RequestParam int id) {
+        return riskService.getRisksByTimeIntervel(beginTime, endTime, type, id);
     }
 
     @RequestMapping(value="/add", method=RequestMethod.POST)

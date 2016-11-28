@@ -11,6 +11,7 @@ import top.kass.service.RiskService;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,6 +156,14 @@ public class RiskServiceImpl implements RiskService {
 
         }
         map.put("code", 0);
+        map.put("data", risks);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getRisksByTimeIntervel(Date beginTime, Date endTime, int type, int id) {
+        Map<String, Object> map = new HashMap<>();
+        Map risks = riskDao.getByTimeIntervel(beginTime, endTime, type, id);
         map.put("data", risks);
         return map;
     }
