@@ -21,7 +21,7 @@ node {
 
         sh "docker stop tom || true"
         sh "docker rm tom || true"
-        sh "docker run --name tom -p 11111:8080 -d tomcat"
+        sh "docker run -link my:mysql --name tom -p 11111:8080 -d tomcat"
         sh "docker cp target/risk-system.war tom:/usr/local/tomcat/webapps"
     }
     stage('results') {
